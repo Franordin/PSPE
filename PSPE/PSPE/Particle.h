@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 
+
 class Particle {
 public:
 	sf::Vector2f position;

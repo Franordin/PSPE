@@ -3,6 +3,7 @@
 
 #include "Particle.h"
 #include "Constraint.h"
+#include "InputHandler.h"
 
 const int WIDTH = 1080;
 const int HEIGHT = 640;
@@ -44,9 +45,13 @@ int main() {
 	while (window.isOpen()) {
 		sf::Event event;
 
-		while (window.pollEvent(event))
+		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+			/// handle mouse clicks
+			InputHandler::handle_mouse_click(event, particles, constraints);
+		}
 
 		/// Apply gravity and update particles
 		for (auto& particle : particles) {
@@ -78,6 +83,8 @@ int main() {
 
 		/// Draw constraints as lines
 		for (const auto& constraint : constraints) {
+			if (!constraint.active) continue;
+
 			sf::Vertex line[] = {
 				sf::Vertex(constraint.p1->position, sf::Color::White),
 				sf::Vertex(constraint.p2->position, sf::Color::White),

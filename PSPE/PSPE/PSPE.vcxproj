@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constraint.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Particle.h" />
   </ItemGroup>
   <ItemGroup>
