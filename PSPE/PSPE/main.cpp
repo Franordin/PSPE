@@ -6,32 +6,39 @@
 
 const int WIDTH = 1080;
 const int HEIGHT = 640;
-const float PARTICLE_RADIOUS = 30.0f;
+const float PARTICLE_RADIOUS = 10.0f;
 const float GRAVITY = 10.0f;
 const float TIME_STEP = 0.1f;
+
+const int ROW = 10;
+const int COL = 10;
+const float REST_DISTANCE = 30.0f;
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Cloth Simulation");
 	window.setFramerateLimit(60);
 
 	std::vector<Particle> particles;
-	particles.emplace_back(WIDTH / 2, HEIGHT / 2);
-	particles.emplace_back(WIDTH / 2 + 50, HEIGHT / 2 + 50);
-	particles.emplace_back(WIDTH / 2 + 50, HEIGHT / 2 - 50);
-	particles.emplace_back(WIDTH / 2 - 50, HEIGHT / 2 + 50);
-	particles.emplace_back(WIDTH / 2 - 50, HEIGHT / 2 - 50);
-
 	std::vector<Constraint> constraints;
-	constraints.emplace_back(&particles[0], &particles[1]);
-	constraints.emplace_back(&particles[0], &particles[2]);
-	constraints.emplace_back(&particles[0], &particles[3]);
-	constraints.emplace_back(&particles[0], &particles[4]);
-	constraints.emplace_back(&particles[1], &particles[2]);
-	constraints.emplace_back(&particles[1], &particles[3]);
-	constraints.emplace_back(&particles[1], &particles[4]);
-	constraints.emplace_back(&particles[2], &particles[3]);
-	constraints.emplace_back(&particles[2], &particles[4]);
-	constraints.emplace_back(&particles[3], &particles[4]);
+
+	for (int row = 0; row < ROW; row++)
+		for (int col = 0; col < COL; col++) {
+			float x = col * REST_DISTANCE + WIDTH / 3;
+			float y = row * REST_DISTANCE + HEIGHT / 3;
+			particles.emplace_back(x, y);
+		}
+
+	for (int row = 0; row < ROW; row++)
+		for (int col = 0; col < COL; col++) {
+			if (col < COL - 1) {
+				/// Horizontal constraint
+				constraints.emplace_back(&particles[row * COL + col], &particles[row * COL + col + 1]);
+			}
+			if (row < ROW - 1) {
+				/// Vertical constraint
+				constraints.emplace_back(&particles[row * COL + col], &particles[(row + 1) * COL + col]);
+			}
+		}
 
 	while (window.isOpen()) {
 		sf::Event event;

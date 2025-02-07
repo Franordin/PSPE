@@ -1,35 +1,4 @@
 ﻿  main.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:         with
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:         [
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:             _Ty=int
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:         ]
-  (compiling source file 'main.cpp')
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103):
-      the template instantiation context (the oldest one first) is
-          C:\Users\SonHyeontae\wkspace\Github\PSPE\PSPE\PSPE\main.cpp(18,12):
-          see reference to function template instantiation 'Particle &std::vector<Particle,std::allocator<Particle>>::emplace_back<int,int>(int &&,int &&)' being compiled
-          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(858,24):
-          see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<int,int>(int &&,int &&)' being compiled
-          with
-          [
-              _Ty=Particle
-          ]
-          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(776,20):
-          see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<int,int>(int &&,int &&)' being compiled
-          with
-          [
-              _Ty=Particle
-          ]
-          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(794,27):
-          see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,int,int>(_Alloc &,_Objty *const ,int &&,int &&)' being compiled
-          with
-          [
-              _Alloc=std::allocator<Particle>,
-              _Ty=Particle,
-              _Objty=Particle
-          ]
-  
   PSPE.vcxproj -> C:\Users\SonHyeontae\wkspace\Github\PSPE\PSPE\x64\Debug\PSPE.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
