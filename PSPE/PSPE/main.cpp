@@ -62,19 +62,25 @@ int main() {
 		window.clear(sf::Color::Black);
 
 		/// Draw particles as balls
+		//for (const auto& particle : particles) {
+		//	sf::CircleShape circle(PARTICLE_RADIOUS);
+		//	circle.setFillColor(sf::Color::White);
+		//	circle.setPosition(particle.position.x - PARTICLE_RADIOUS,
+		//						particle.position.y - PARTICLE_RADIOUS);
+		//	window.draw(circle);
+		//}
+
+		/// Draw particles as points
 		for (const auto& particle : particles) {
-			sf::CircleShape circle(PARTICLE_RADIOUS);
-			circle.setFillColor(sf::Color::White);
-			circle.setPosition(particle.position.x - PARTICLE_RADIOUS,
-								particle.position.y - PARTICLE_RADIOUS);
-			window.draw(circle);
+			sf::Vertex point(particle.position, sf::Color::White);
+			window.draw(&point, 1, sf::Points);
 		}
 
 		/// Draw constraints as lines
 		for (const auto& constraint : constraints) {
 			sf::Vertex line[] = {
-				sf::Vertex(constraint.p1->position, sf::Color::Green),
-				sf::Vertex(constraint.p2->position, sf::Color::Green),
+				sf::Vertex(constraint.p1->position, sf::Color::White),
+				sf::Vertex(constraint.p2->position, sf::Color::White),
 			};
 
 			window.draw(line, 2, sf::Lines);
