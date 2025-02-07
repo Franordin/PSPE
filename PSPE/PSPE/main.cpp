@@ -52,7 +52,7 @@ int main() {
 		for (auto& particle : particles) {
 			particle.apply_force(sf::Vector2f(0, GRAVITY));
 			particle.update(TIME_STEP);
-			particle.constraint_to_bounds(WIDTH, HEIGHT, PARTICLE_RADIOUS);
+			particle.constraint_to_bounds(WIDTH, HEIGHT);
 		}
 
 		for (size_t i = 0; i < 5; i++)

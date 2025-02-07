@@ -30,19 +30,11 @@ public:
 		}
 	}
 
-	void constraint_to_bounds(float width, float height, float radius) {
-		if (position.x < radius) {
-			position.x = radius;
-		}
-		if (position.x > width - radius) {
-			position.x = width - radius;
-		}
-		if (position.y < radius) {
-			position.y = radius;
-		}
-		if (position.y > height - radius) {
-			position.y = height - radius;
-		}
+	void constraint_to_bounds(float width, float height) {
+		if (position.x < 0) position.x = 0;
+		if (position.x > width) position.x = width;
+		if (position.y < 0) position.y = 0;
+		if (position.y > height) position.y = height;
 	}
 };
 
