@@ -25,7 +25,8 @@ int main() {
 		for (int col = 0; col < COL; col++) {
 			float x = col * REST_DISTANCE + WIDTH / 3;
 			float y = row * REST_DISTANCE + HEIGHT / 3;
-			particles.emplace_back(x, y);
+			bool pinned = (row == 0);
+			particles.emplace_back(x, y, pinned);
 		}
 
 	for (int row = 0; row < ROW; row++)
