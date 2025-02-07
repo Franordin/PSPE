@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <iostream>
 
 #include "particle.h"
 
@@ -16,6 +15,10 @@ int main() {
 
 	std::vector<Particle> particles;
 	particles.emplace_back(WIDTH / 2, HEIGHT / 2);
+	particles.emplace_back(WIDTH / 2 + 50, HEIGHT / 2 + 50);
+	particles.emplace_back(WIDTH / 2 + 50, HEIGHT / 2 - 50);
+	particles.emplace_back(WIDTH / 2 - 50, HEIGHT / 2 + 50);
+	particles.emplace_back(WIDTH / 2 - 50, HEIGHT / 2 - 50);
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -28,7 +31,7 @@ int main() {
 		for (auto& particle : particles) {
 			particle.apply_force(sf::Vector2f(0, GRAVITY));
 			particle.update(TIME_STEP);
-			particle.constrain_to_bounds(WIDTH, HEIGHT, PARTICLE_RADIOUS);
+			particle.constraint_to_bounds(WIDTH, HEIGHT, PARTICLE_RADIOUS);
 		}
 
 		window.clear(sf::Color::Black);

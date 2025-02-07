@@ -27,7 +27,7 @@ public:
 		acceleration = sf::Vector2f(0, 0); // reset after update
 	}
 
-	void constrain_to_bounds(float width, float height, float radius) {
+	void constraint_to_bounds(float width, float height, float radius) {
 		if (position.x < radius) {
 			position.x = radius;
 		}
