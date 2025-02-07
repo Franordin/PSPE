@@ -1,16 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 
 #include "particle.h"
 
 const int WIDTH = 1080;
-const int HEIGHT = 720;
+const int HEIGHT = 640;
 const float PARTICLE_RADIOUS = 30.0f;
 const float GRAVITY = 10.0f;
-const float TIME_STEP = 0.0017f;
+const float TIME_STEP = 0.1f;
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Cloth Simulation");
+	window.setFramerateLimit(60);
 
 	std::vector<Particle> particles;
 	particles.emplace_back(WIDTH / 2, HEIGHT / 2);
@@ -26,6 +28,7 @@ int main() {
 		for (auto& particle : particles) {
 			particle.apply_force(sf::Vector2f(0, GRAVITY));
 			particle.update(TIME_STEP);
+			particle.constrain_to_bounds(WIDTH, HEIGHT, PARTICLE_RADIOUS);
 		}
 
 		window.clear(sf::Color::Black);
@@ -34,7 +37,8 @@ int main() {
 		for (const auto& particle : particles) {
 			sf::CircleShape circle(PARTICLE_RADIOUS);
 			circle.setFillColor(sf::Color::White);
-			circle.setPosition(particle.position.x - 15, particle.position.y - 15);
+			circle.setPosition(particle.position.x - PARTICLE_RADIOUS,
+								particle.position.y - PARTICLE_RADIOUS);
 			window.draw(circle);
 		}
 

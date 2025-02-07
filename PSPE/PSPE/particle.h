@@ -12,7 +12,7 @@ public:
 	sf::Vector2f acceleration;
 
 	Particle(float x, float y)
-		: position(x, y), previous_position(x, y), acceleration(x, y)
+		: position(x, y), previous_position(x, y), acceleration(0, 0)
 	{}
 
 	void apply_force(const sf::Vector2f& force) {
@@ -25,6 +25,21 @@ public:
 		previous_position = position;
 		position += velocity + acceleration * time_step * time_step;
 		acceleration = sf::Vector2f(0, 0); // reset after update
+	}
+
+	void constrain_to_bounds(float width, float height, float radius) {
+		if (position.x < radius) {
+			position.x = radius;
+		}
+		if (position.x > width - radius) {
+			position.x = width - radius;
+		}
+		if (position.y < radius) {
+			position.y = radius;
+		}
+		if (position.y > height - radius) {
+			position.y = height - radius;
+		}
 	}
 };
 
